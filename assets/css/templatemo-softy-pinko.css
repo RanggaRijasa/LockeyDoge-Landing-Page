@@ -314,7 +314,7 @@ a.main-button-slider {
   font-size: 13px;
   border-radius: 20px;
   padding: 12px 20px;
-  background-color: #ff589e;
+  background-color: #fd7e14;
   text-transform: uppercase;
   color: #fff;
   letter-spacing: 0.25px;
@@ -325,7 +325,7 @@ a.main-button-slider {
 }
 
 a.main-button-slider:hover {
-  background-color: #8261ee;
+  background-color: #e94514;
 }
 
 a.main-button {
@@ -448,7 +448,7 @@ header
 }
 
 .header-area .main-nav .nav li a:hover {
-  color: #ff589e;
+  color: #fd7e14;
 }
 
 .header-area .main-nav .menu-trigger {
@@ -560,7 +560,7 @@ header
 }
 
 .header-area.header-sticky .nav li a.active {
-  color: #ff589e;
+  color: #fd7e14;
 }
 
 @media (max-width: 1200px) {
@@ -644,7 +644,7 @@ welcome
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url(../images/banner-bg.png);
+  background-image: url(../images/wallpaperflare.com_wallpaper.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover; 
@@ -769,7 +769,7 @@ features
 }
 
 .features-small-item:hover .icon {
-  background-color: #ff589e;
+  background-color: #fd7e14;
 }
 
 .features-small-item .icon {
@@ -783,7 +783,7 @@ features
   margin: auto;
   position: relative;
   margin-bottom: 30px;
-  background: #8261ee;
+  background: #cd650f;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -857,7 +857,7 @@ parallax & home seperator
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  background-image: url(../images/work-process-bg.png);
+  background-image: url(../images/orangebg3.jpg);
   z-index: 2;
   top: -20%;
   left: -20%;
@@ -980,7 +980,7 @@ parallax & home seperator
   width: 140%;
   height: 140%;
   opacity: .90;
-  background-image: url(../images/fun-facts-bg.png);
+  background-image: url(../images/orangebg2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -1215,7 +1215,7 @@ pricing
 }
 
 .pricing-item.active .pricing-body .price-wrapper {
-  background-color: #ff589e;
+  background-color: #fd7e14;
 }
 
 .pricing-item.active .pricing-body .price-wrapper .currency {
@@ -1443,7 +1443,7 @@ footer
 --------------------------------------------- 
 */
 footer {
-  background-image: linear-gradient(127deg, #a759d1 0%, #8261ee 91%);
+  background-image: linear-gradient(127deg, #fd7e14 0%, #e94514 91%);
   padding-top: 30px;
 }
 
@@ -1511,7 +1511,7 @@ preloader
 */
 #preloader {
   overflow: hidden;
-  background-image: linear-gradient(135deg, #a759d1 0%, #8261ee 100%);
+  background-image: linear-gradient(135deg, #fd7e14 0%, #e94514 100%);
   left: 0;
   right: 0;
   top: 0;
