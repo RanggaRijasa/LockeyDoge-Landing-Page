@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy LDOGE</title>
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-softy-pinko.css">
+  <style>
+    /* Ensure content doesn't overlap with the sticky navbar */
+    body {
+      padding-top: 80px; /* Adjust this value if the navbar height changes */
+    }
+
+    .buy-token-container {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+
+    .buy-token-box {
+      background-color: #f8f9fa;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      flex: 1;
+      min-width: 300px;
+      max-width: 450px;
+      text-align: center;
+    }
+
+    .buy-token-box h4 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .buy-token-box p {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    /* Centering the button while keeping other content aligned */
+    .buy-token-box .btn {
+      display: block;
+      margin: 20px auto; /* Center horizontally */
+    }
+
+    .buy-token-box input {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .buy-token-box button {
+      background-color: #fd7e14;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .buy-token-box button:hover {
+      background-color: #d56000;
+    }
+
+    .buy-token-box .wallet-info {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo">
+              <img src="assets/images/locky doge transparant.png" alt="Lockey Doge" style="width: 210px; height: 30px; object-fit: cover;">
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li><a href="index.html#welcome">Home</a></li>
+              <li><a href="index.html#features">About</a></li>
+              <li><a href="index.html#work-process">Our Solution</a></li>
+              <li><a href="index.html#testimonials">Core Values</a></li>
+              <li><a href="index.html#pricing-plans">Community</a></li>
+              <li><a href="index.html#blog">Roadmap</a></li>
+              <li><a href="buyldoge.html" class="active">Buy LDOGE</a></li>
+              <li><a href="index.html#contact-us">Meet Us</a></li>
+            </ul>
+            <a class="menu-trigger">
+              <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- ***** Buy Token Section ***** -->
+  <section class="section" id="buy-token">
+    <div class="container">
+      <div class="center-heading">
+        <h2 class="section-title">Buy LDOGE Tokens</h2>
+        <p>Connect your wallet and securely purchase $LDOGE tokens.</p>
+      </div>
+      <div class="buy-token-container">
+        <!-- Wallet Connection Section -->
+        <div class="buy-token-box">
+          <h4>Connect Your Wallet</h4>
+          <button id="connectButton" class="btn">Connect Wallet</button>
+          <p id="walletAddress" class="wallet-info">Not connected</p>
+        </div>
+
+        <!-- Token Purchase Section -->
+        <div class="buy-token-box">
+          <h4>Buy Tokens</h4>
+          <p>Enter the amount of ETH you want to spend:</p>
+          <input type="number" id="buyAmount" placeholder="0.1 ETH" min="0.01" step="0.01">
+          <button id="buyButton" class="btn">Buy Tokens</button>
+          <p id="transactionStatus" class="wallet-info">No transactions yet</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.7.0/dist/ethers.umd.min.js"></script>
+    <script>
+      const connectButton = document.getElementById("connectButton");
+      const buyButton = document.getElementById("buyButton");
+      const walletAddress = document.getElementById("walletAddress");
+      const transactionStatus = document.getElementById("transactionStatus");
+      const buyAmountInput = document.getElementById("buyAmount");
+
+      let provider;
+      let signer;
+
+      const tokenContractAddress = "0x0165878A594ca255338adfa4d48449f69242Eb8F";
+      const tokenContractABI = [
+        {
+          inputs: [],
+          name: "buyTokens",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+      ];
+
+      // Connect Wallet
+      connectButton.addEventListener("click", async () => {
+        if (typeof window.ethereum !== "undefined") {
+          try {
+            await window.ethereum.request({ method: "eth_requestAccounts" });
+            provider = new ethers.BrowserProvider(window.ethereum);
+            signer = await provider.getSigner();
+            const address = await signer.getAddress();
+            walletAddress.textContent = `Connected Address: ${address}`;
+          } catch (error) {
+            console.error("Error connecting to wallet:", error);
+            walletAddress.textContent = "Failed to connect.";
+          }
+        } else {
+          walletAddress.textContent =
+            "MetaMask is not installed. Please install it to use this feature.";
+        }
+      });
+
+      // Buy Tokens
+      buyButton.addEventListener("click", async () => {
+        if (!signer) {
+          alert("Please connect your wallet first.");
+          return;
+        }
+
+        const ethAmount = buyAmountInput.value;
+        if (!ethAmount || ethAmount <= 0) {
+          alert("Please enter a valid ETH amount.");
+          return;
+        }
+
+        try {
+          const tokenContract = new ethers.Contract(
+            tokenContractAddress,
+            tokenContractABI,
+            signer
+          );
+
+          const tx = await tokenContract.buyTokens({
+            value: ethers.parseEther(ethAmount),
+          });
+
+          transactionStatus.textContent = "Transaction pending...";
+          await tx.wait();
+          transactionStatus.textContent = `Transaction successful: ${tx.hash}`;
+        } catch (error) {
+          console.error("Error buying tokens:", error);
+          transactionStatus.textContent = "Transaction failed.";
+          alert(`Transaction failed: ${error.message}`);
+        }
+      });
+    </script>
+  </section>
+
+  <!-- ***** Footer ***** -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p class="copyright">Copyright &copy; LockyDoge</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
